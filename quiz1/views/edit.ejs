@@ -1,0 +1,18 @@
+
+<h1>Edit Note</h1>
+
+<form action="/notes/<%= note.id %>" method="POST">
+  <div>
+    <textarea
+      name="content"
+      cols="50"
+      rows="10"
+      placeholder="What are your thoughts?"
+    >
+<%= note.content %></textarea
+    >
+  </div>
+
+  <input type="hidden" name="_method" value="PUT" />
+  <input type="submit" value="Edit Note" />
+</form>

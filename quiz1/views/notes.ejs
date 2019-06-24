@@ -1,0 +1,9 @@
+<h1>Notes</h1>
+
+<ul>
+  <% for (let note of notes) { %>
+    <li>
+      <a href="/notes/<%= note.id %>"><%= note.content %></a> <br>
+    </li>
+  <% } %>
+</ul>
