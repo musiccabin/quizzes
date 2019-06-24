@@ -15,8 +15,10 @@ router.get('/cluckr/clucks', (req, res) => {
     knex('clucks')
         .orderBy('created_at', 'DESC')
         .then(data => {
+            const username = req.cookies.username;
             res.render('clucks', {
-                clucks: data
+                clucks: data,
+                username: username
             })
         })
 })
@@ -36,23 +38,24 @@ router.get('/cluckr/clucks', (req, res) => {
 //         });
 // });
 
-// // NAME: article#create, METHOD: POST, PATH: /articles
-// router.post('/', (req, res) => {
-//     knex('articles') // --- START SQL
-//         .insert({
-//             title: req.body.title,
-//             content: req.body.content,
-//             viewCount: 0
-//         })
-//         .returning('*') // --- END SQL
-//         .then(data => {
-//             // get the first value because db data
-//             // always comes in an array
-//             const article = data[0];
-//             // -- EXECUTE SQL
-//             res.redirect(`/articles/${article.id}`);
-//         });
-// });
+// NAME: article#create, METHOD: POST, PATH: /articles
+router.post('/cluckr/clucks', (req, res) => {
+    knex('clucks') // --- START SQL
+        .insert({
+            username: req.cookies.username,
+            content: req.body.content,
+            image_url: req.body.imageURL
+        })
+        .orderBy('created_at', 'DESC')
+        .returning('*') // --- END SQL
+        .then(data => {
+            res.redirect('/cluckr/clucks');
+            // const clucks = data;
+            // const username = req.cookies.username;
+            // console.log(username)
+            // res.render(`clucks`,{clucks: clucks,username: username});
+        });
+});
 
 // router.get('/', (req, res) => {
 //     knex('articles')

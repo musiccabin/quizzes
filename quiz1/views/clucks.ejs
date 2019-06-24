@@ -1,9 +1,14 @@
-<h1>Clucks</h1>
-
+<%- include('./partials/headers')%>
+<%- include("./partials/nav")%> 
 <ul>
   <% for (let cluck of clucks) { %>
-    <li>
-      <a href="/clucks/<%= cluck.id %>"><%= cluck.content %></a> <br>
+    <li> <%= cluck.username %> </li>
+    <li> <%= cluck.content %> </li>
+    <li><% if (cluck.image_url) { %>
+      <img src="<%=cluck.image_url%>">
+    <% } %>
     </li>
   <% } %>
 </ul>
+
+<%- include("./partials/footer")%>  
