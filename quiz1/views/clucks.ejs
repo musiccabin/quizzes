@@ -5,12 +5,12 @@
   <% const now = Math.round(new Date()/1000) %>
   <% const interval = now - (cluck.created_at / 1000) %>
   <% let toDisplay = '' %>
-  <li> <%= cluck.username %> <%= display(interval) %> </li>
-  <li> <%= cluck.content %> </li>
+  <li><h3> <%= cluck.content %> </h3></li>
   <li><% if (cluck.image_url) { %>
     <img src="<%=cluck.image_url%>">
     <% } %>
   </li>
+  <li> <%= cluck.username %> <%= display(interval) %> </li>
   <% } %>
 </ul>
 

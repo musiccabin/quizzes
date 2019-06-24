@@ -81,7 +81,18 @@ small, .text_small {font-size: 0.8em;}
     list-style-position: inside;} /*disc, cricle and square can be used */
 
     nav {
+        display:flex; flex-direction:column;
+        align-items:center;
+        justify-content:center;
+    }
+
+    .menu {
+        width: 30em;
         display:flex; flex-direction:row;
         align-items:space-around;
         justify-content:space-around;
+    }
+
+    .cluck {
+        text-decoration: underline;
     }
