@@ -4,9 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const knex = require('./client');
 
-const notesRouter = require('./routes/clucks')
+const clucksRouter = require('./routes/clucks')
 
-const methodOverride = require('method-override');
+// const methodOverride = require('method-override');
 
 const app = express();
 app.set('view engine','ejs');
@@ -16,18 +16,17 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname,"public")));
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
-app.use(
-    methodOverride((req,res) => {
-        if (req.body && req.body._method) {
-            console.log(req.body);
-            console.log(req.body._method);
-            const method = req.body._method;
-            return method;
-        }
-    })
-)
-app.use('/',notesRouter);
-
+// app.use(
+//     methodOverride((req,res) => {
+//         if (req.body && req.body._method) {
+//             console.log(req.body);
+//             console.log(req.body._method);
+//             const method = req.body._method;
+//             return method;
+//         }
+//     })
+// )
+app.use('/',clucksRouter);
 
 app.use((req,res,next) => {
     console.log("cookies:", req.cookies);
@@ -35,13 +34,23 @@ app.use((req,res,next) => {
     const username = req.cookies.username;
     if (username) {
         res.locals.username = username;
-    } else {
-        if (req.url === '/sign_in') {
-            next();
-        } else {
-            res.render('signIn');
-        }
-}})
+    }
+    next();
+})
+
+// app.use((req,res,next) => {
+//     console.log("cookies:", req.cookies);
+//     res.locals.username = '';
+//     const username = req.cookies.username;
+//     if (username) {
+//         res.locals.username = username;
+//     } else {
+//         if (req.url === '/cluckr/sign_in') {
+//             next();
+//         } else {
+//             res.render('signIn');
+//         }
+// }})
 
 const PORT = 9090;
 const ADDRESS = 'localhost';
@@ -49,7 +58,8 @@ app.listen(PORT,ADDRESS,() => {
     console.log(`server listening on ${ADDRESS}:${PORT}`);
 })
 
-app.get('/sign_in', (req,res) => {
+app.get('/cluckr/sign_in', (req,res) => {
+    // res.clearCookie('username');
     res.render('signIn');
 })
 
@@ -78,9 +88,9 @@ app.get('/sign_in', (req,res) => {
 // })
 
 const COOKIE_MAX_AGE = 1000 * 60 * 60 * 24 * 7;
-app.post('/cluckr/sign_in',(req,res) => {
+app.post('/cluckr/clucks',(req,res) => {
     res.cookie('username',req.body.username, {maxAge: COOKIE_MAX_AGE});
-    res.redirect('/');
+    res.redirect('/cluckr/clucks');
     res.end();
 })
 

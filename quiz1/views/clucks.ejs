@@ -1,0 +1,9 @@
+<h1>Clucks</h1>
+
+<ul>
+  <% for (let cluck of clucks) { %>
+    <li>
+      <a href="/clucks/<%= cluck.id %>"><%= cluck.content %></a> <br>
+    </li>
+  <% } %>
+</ul>
