@@ -1,14 +1,17 @@
 <%- include('./partials/headers')%>
-<%- include("./partials/nav")%> 
+<%- include("./partials/nav")%>
 <ul>
   <% for (let cluck of clucks) { %>
-    <li> <%= cluck.username %> </li>
-    <li> <%= cluck.content %> </li>
-    <li><% if (cluck.image_url) { %>
-      <img src="<%=cluck.image_url%>">
+  <% const now = Math.round(new Date()/1000) %>
+  <% const interval = now - (cluck.created_at / 1000) %>
+  <% let toDisplay = '' %>
+  <li> <%= cluck.username %> <%= display(interval) %> </li>
+  <li> <%= cluck.content %> </li>
+  <li><% if (cluck.image_url) { %>
+    <img src="<%=cluck.image_url%>">
     <% } %>
-    </li>
+  </li>
   <% } %>
 </ul>
 
-<%- include("./partials/footer")%>  
+<%- include("./partials/footer")%>

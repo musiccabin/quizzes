@@ -1,0 +1,87 @@
+@import url(reset.css);
+
+body {background: lightblue;
+    font-family: 'Libre Franklin', sans-serif;
+    padding: 3em;
+    padding: 1em 2em;}
+    /* top/bottom: 1em; right/left: 2em */
+
+    h1, h2, h3, h4, h5, h6 {font-family: 'Copse', serif;}
+
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400');
+
+html {font-size: 16px;}
+
+body {
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #333;
+}
+
+p {margin-bottom: 1.25em;}
+
+h1, h2, h3, h4, h5 {
+  margin: 2.75rem 0 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 3.052em;
+}
+
+h2 {font-size: 2.441em;}
+
+h3 {font-size: 1.953em;}
+
+h4 {font-size: 1.563em;}
+
+h5 {font-size: 1.25em;}
+
+small, .text_small {font-size: 0.8em;}
+
+    p {margin-bottom: 1em;}
+
+    .hero-image {
+        text-align: center;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    ::selection {
+        background: #fff200;
+    }
+    abbr {
+        background: #fff200;
+    }
+    a {text-decoration: none; color: #444}
+    a:hover {text-decoration: underline;
+        color: #000;
+        color: rgb(0, 0, 0);}
+
+    button {border: 1px solid white;
+        padding: 1em 3em;
+        background: rgba(255,255,255,0.5);}
+    
+    button:hover, button:active {background: black; color: white;}
+
+    /* a:link{}
+    a:visited{}
+    a:hover {}
+    a:active{} */
+
+    ul {list-style-type: none;
+    list-style-position: inside;} /*disc, cricle and square can be used */
+
+    nav {
+        display:flex; flex-direction:row;
+        align-items:space-around;
+        justify-content:space-around;
+    }

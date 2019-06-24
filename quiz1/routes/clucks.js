@@ -4,6 +4,34 @@ const knex = require('../client');
 
 // -= Article Routes =-
 
+function display (interval) {
+    let toDisplay = '';
+    switch (true) {
+        case (interval < 60):
+            toDisplay = 'just now'
+            break;
+        case (interval >= 60 && interval < 3600):
+            toDisplay = `${Math.floor(interval / 60)} minute(s) ago`
+            break;
+        case (interval >= 3600 && interval < (24 * 3600)):
+            toDisplay = `${Math.floor(interval / 3600)} hour(s) ago`
+            break;
+        case (interval >= (24 * 3600) && interval < (7 * 24 * 3600)):
+            toDisplay = `${Math.floor(interval / (3600*24))} day(s) ago`
+            break;
+        case (interval >= (7 * 24 * 3600) && interval < (30 * 7 * 24 * 3600)):
+            toDisplay = `${Math.floor(interval / (3600*24*7))} week(s) ago`
+            break;
+        case (interval >= (30 * 7 * 24 * 3600) && interval < (12 * 30 * 7 * 24 * 3600)):
+            toDisplay = `${Math.floor(interval / (3600*24*7*30))} month(s) ago`
+            break;
+        case (interval >= (12 * 30 * 7 * 24 * 3600)):
+            toDisplay = `${Math.floor(interval / (3600*24*7*30*12))} year(s) ago`
+            break;
+    }
+    return toDisplay;
+}
+
 // NAME: article#new, METHOD: GET, PATH: /articles/new
 router.get('/cluckr/new', (req, res) => {
     console.log(req.cookies.username)
@@ -30,7 +58,8 @@ router.get('/cluckr/clucks', (req, res) => {
             const username = req.cookies.username;
             res.render('clucks', {
                 clucks: data,
-                username: username
+                username: username,
+                display: display
             })
         })
 })
@@ -144,3 +173,30 @@ router.post('/cluckr/clucks', (req, res) => {
 
 
 module.exports = router;
+
+// <% switch (true) { %>
+//     <% case (interval < 60): %>
+//     <% toDisplay = 'just now' %>
+//     <% break; %>
+//     <% case (interval >= 60 && interval < 3600): %>
+//     <% toDisplay = <%=Math.floor(interval / 60)%> + 'minute(s) ago' %>
+//     <% break; %>
+//     <% case (interval >= 3600 && interval < (24*3600)): %>
+//     <% toDisplay = `${Math.floor(interval / 3600)} hour(s) ago` %>
+//     <% break; %>
+//     <% case (interval >= (24*3600) && interval < (7*24*3600)): %>
+//     <% toDisplay = `${Math.floor(interval / (3600*24))} day(s) ago` %>
+//     <% break; %>
+//     <% case (interval >= (7*24*3600) && interval < (30*7*24*3600)): %>
+//     <% toDisplay = `${Math.floor(interval / (3600*24*7))} week(s) ago` %>
+//     <% break; %>
+//     <% case (interval >= (30*7*24*3600) && interval < (12*30*7*24*3600)): %>
+//     <% toDisplay = `${Math.floor(interval / (3600*24*7*30))} month(s) ago` %>
+//     <% break; %>
+//     <% case (interval >= (12*30*7*24*3600)): %>
+//     <% toDisplay = `${Math.floor(interval / (3600*24*7*30*12))} year(s) ago` %>
+//     <% break; %>
+//     <% default: %>
+//     <% toDisplay = '' %>
+//     <% break; %>
+//     <% } %>

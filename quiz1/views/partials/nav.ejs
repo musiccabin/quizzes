@@ -1,20 +1,20 @@
-<nav>
-<ul>
-    <li><a href='/cluckr/clucks'>Chicken Image</a></li>
-<% if (username) { %>
-<li><a href='/cluckr/new'>Cluck!</a></li>
-<span>
-    <%= username %>
-</span>
-<form action='/cluckr/sign_out' method='POST'>
-    <input type='submit' value='sign out'/>
-</form>
-<% } else { %>
-    <form action='/cluckr/sign_in' method='POST'>
-        <label for="username">Username:</label>
-        <input type='text' name='username' placeholder='username'>
-        <input type='submit' value='sign in'>
-    </form>
-<% } %>
-</ul>
-</nav>
+    <nav>
+        <ul>
+            <li><a href='/cluckr/clucks'><img src='/assets/chicken.png'></a></li>
+            <% if (username) { %>
+            <li><a href='/cluckr/new'>Cluck!</a></li>
+            <span>
+                <%= username %>
+            </span>
+            <form action='/cluckr/sign_out' method='POST'>
+                <input type='submit' value='sign out' />
+            </form>
+            <% } else { %>
+            <form action='/cluckr/sign_in' method='POST'>
+                <label for="username">Username:</label>
+                <input type='text' name='username' placeholder='username'>
+                <input type='submit' value='sign in'>
+            </form>
+            <% } %>
+        </ul>
+    </nav>

@@ -1,8 +1,0 @@
-<h1><%= note.id %></h1>
-
-<p><%= note.content %></p>
-
-<form action="/notes/<%= note.id %>" method="POST">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete">
-</form>

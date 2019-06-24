@@ -95,7 +95,7 @@ app.post('/cluckr/sign_out',(req,res) => {
 // })
 
 const COOKIE_MAX_AGE = 1000 * 60 * 60 * 24 * 7;
-app.post('/cluckr/clucks',(req,res) => {
+app.post('/cluckr/sign_in',(req,res) => {
     res.cookie('username',req.body.username, {maxAge: COOKIE_MAX_AGE});
     res.redirect('/cluckr/clucks');
     res.end();
