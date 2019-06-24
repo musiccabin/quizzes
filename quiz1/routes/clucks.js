@@ -5,9 +5,11 @@ const knex = require('../client');
 // -= Article Routes =-
 
 // NAME: article#new, METHOD: GET, PATH: /articles/new
-// router.get('/create', (req, res) => {
-//     res.render('create');
-// });
+router.get('/cluckr/new', (req, res) => {
+    console.log(req.cookies.username)
+    const username = req.cookies.username;
+    res.render('new',{username});
+});
 
 router.get('/cluckr/clucks', (req, res) => {
     knex('clucks')

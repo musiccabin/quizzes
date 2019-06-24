@@ -1,0 +1,19 @@
+<%- include('./partials/headers')%>
+<%- include("./partials/nav")%>  
+
+<form action="/cluckr/clucks" method="POST">
+  <label for="cotent">Content</label>
+  <div>
+    <textarea
+      name="content"
+      cols="50"
+      rows="10"
+      placeholder="Whachoo cluckin' about?"
+    ></textarea>
+  </div>
+  <label for="imageURL">Image URL</label>
+  <input type='text' name='imageURL' placeholder="e.g.example.com/some.png" />
+  <input type="submit" value="Cluck!" />
+</form>
+
+<%- include("./partials/footer")%>  
