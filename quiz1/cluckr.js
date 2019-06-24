@@ -63,6 +63,13 @@ app.get('/cluckr/sign_in', (req,res) => {
     res.render('signIn');
 })
 
+app.post('/cluckr/sign_out',(req,res) => {
+    // console.log(req.body);
+    res.clearCookie('username');
+    res.redirect('/cluckr');
+    // res.end();
+})
+
 // app.get('/hello_world',(req,res) => {
 //     res.send('<div>Hello World</div>');
 // });

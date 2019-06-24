@@ -11,6 +11,18 @@ router.get('/cluckr/new', (req, res) => {
     res.render('new',{username});
 });
 
+router.get('/cluckr', (req, res) => {
+    knex('clucks')
+        .orderBy('created_at', 'DESC')
+        .then(data => {
+            const username = req.cookies.username;
+            res.render('clucks', {
+                clucks: data,
+                username: username
+            })
+        })
+})
+
 router.get('/cluckr/clucks', (req, res) => {
     knex('clucks')
         .orderBy('created_at', 'DESC')
