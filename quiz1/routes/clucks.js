@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../client');
+const fs = require('fs')
 
-// -= Article Routes =-
+let tags = JSON.parse(fs.readFileSync('tags.txt').toString());
 
 function display (interval) {
     let toDisplay = '';
@@ -46,7 +47,9 @@ router.get('/cluckr', (req, res) => {
             const username = req.cookies.username;
             res.render('clucks', {
                 clucks: data,
-                username: username
+                username: username,
+                display: display,
+                tags: tags
             })
         })
 })
@@ -59,7 +62,8 @@ router.get('/cluckr/clucks', (req, res) => {
             res.render('clucks', {
                 clucks: data,
                 username: username,
-                display: display
+                display: display,
+                tags: tags
             })
         })
 })
@@ -90,6 +94,19 @@ router.post('/cluckr/clucks', (req, res) => {
         .orderBy('created_at', 'DESC')
         .returning('*') // --- END SQL
         .then(data => {
+            if (data[0].content.includes('#')) {
+                let tmpArr = data[0].content.split('#').slice(1);
+                // let tags = fs.readFileSync('tags.txt');
+                for (let element of tmpArr) {
+                    const tag = element.split(' ')[0];
+                    if (tags[tag]) {
+                        tags[tag] += 1;
+                    } else {
+                        tags[tag] = 1;
+                    }
+                }
+                fs.writeFileSync('tags.txt',JSON.stringify(tags));
+            }
             res.redirect('/cluckr/clucks');
             // const clucks = data;
             // const username = req.cookies.username;

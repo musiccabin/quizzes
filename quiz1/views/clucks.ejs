@@ -1,5 +1,12 @@
 <%- include('./partials/headers')%>
 <%- include("./partials/nav")%>
+<div class='columns'>
+  <ul>
+    <li><h3>Trending Clucks</h3></li>
+    <% for (let tag in tags) { %>
+      <li><%= tag %>: <%= tags[tag] %></li>
+      <% } %>
+  </ul>
 <ul>
   <% for (let cluck of clucks) { %>
   <% const now = Math.round(new Date()/1000) %>
@@ -13,5 +20,6 @@
   <li> <%= cluck.username %> <%= display(interval) %> </li>
   <% } %>
 </ul>
+</div>
 
 <%- include("./partials/footer")%>
